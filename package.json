@@ -1,0 +1,31 @@
+{
+  "name": "dockerscript",
+  "version": "0.0.1",
+  "description": "Write your Dockerfile in javascript!",
+  "main": "dist/index.js",
+  "preferGlobal": true,
+  "bin": {
+    "dockerscript": "dist/dockerscript.js",
+    "ds": "dist/dockerscript.js"
+  },
+  "scripts": {
+    "test": "mocha",
+    "prepublish": "rm -rf dist && gulp js"
+  },
+  "author": "Tristan Davies <npm@tristan.io>",
+  "license": "MIT",
+  "dependencies": {
+    "babel": "^4.7.16",
+    "concat-stream": "^1.4.7",
+    "event-stream": "^3.3.0",
+    "sandboxed-module": "^2.0.0",
+    "shell-escape": "^0.2.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-babel": "^4.0.0",
+    "gulp-sourcemaps": "^1.5.1",
+    "mocha": "^2.2.1",
+    "chai": "^2.2.0"
+  }
+}
