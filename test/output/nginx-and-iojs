@@ -1,0 +1,46 @@
+FROM debian:wheezy
+
+# Comment goes here. 
+#   Whitespace is intelligently preserved. 
+# This is nifty. 
+ENV NGINX_VERSION=1.7.11-1~wheezy
+ENV IOJS_VERSION=1.6.2
+
+# nginx key
+RUN apt-key adv --keyserver pgp.mit.edu --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
+RUN echo "deb http://nginx.org/packages/mainline/debian/ wheezy nginx" >> /etc/apt/sources.list
+
+# nginx installation
+RUN apt-get update
+RUN apt-get install -y ca-certificates curl nginx=${NGINX_VERSION}
+
+# forward logs
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log 
+
+# iojs keys
+RUN gpg --keyserver pool.sks-keyservers.net --recv-keys 9554F04D7259F04124DE6B476D5A82AC7E37093B DD8F2338BAE7501E3DD5AC78C273792F7D83545D
+
+# iojs installation
+RUN mkdir /iojs && \
+    curl -SLO "https://iojs.org/dist/v$IOJS_VERSION/iojs-v$IOJS_VERSION-linux-x64.tar.gz && \
+    curl -SLO "https://iojs.org/dist/v$IOJS_VERSION/SHASUMS256.txt.asc && \
+    gpg --verify SHASUMS256.txt.asc && \
+    grep " iojs-v$IOJS_VERSION-linux-x64.tar.gz\$" SHASUMS256.txt.asc | sha256sum -c - && \
+    tar -xzf "iojs-v$IOJS_VERSION-linux-x64.tar.gz" -C /iojs --strip-components=1 && \
+    rm "iojs-v$IOJS_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc 
+
+# cleanup
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN useradd -ms /bin/bash static
+
+ADD [".","/home/static/data"]
+
+WORKDIR /home/static/data
+
+RUN /iojs/bin/npm install \
+    /iojs/bin/npm run build 
+
+EXPOSE 80 443
+
+CMD ["nginx","-c","/home/static/nginx/nginx.conf"]

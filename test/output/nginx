@@ -1,0 +1,11 @@
+# nginx key
+RUN apt-key adv --keyserver pgp.mit.edu --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
+RUN echo "deb http://nginx.org/packages/mainline/debian/ wheezy nginx" >> /etc/apt/sources.list
+
+# nginx installation
+RUN apt-get update
+RUN apt-get install -y ca-certificates curl nginx=${NGINX_VERSION}
+
+# forward logs
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log 
