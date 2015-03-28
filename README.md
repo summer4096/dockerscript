@@ -1,6 +1,8 @@
 # dockerscript
 Write your Dockerfile in javascript!
 
+[![Build Status](https://travis-ci.org/summer4096/dockerscript.svg?branch=master)](https://travis-ci.org/summer4096/dockerscript)
+
 ## Install
 
 ```console
