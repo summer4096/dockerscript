@@ -16,7 +16,6 @@ describe('Fixture', function(){
         ds(inputFile, concat(function(output){
           fs.readFile(outputFile, 'utf8', function(err, data){
             if (err) {
-              console.log(output)
               throw err
             }
 

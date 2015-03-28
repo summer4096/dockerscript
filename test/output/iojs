@@ -8,4 +8,4 @@ RUN mkdir /iojs && \
     gpg --verify SHASUMS256.txt.asc && \
     grep " iojs-v$IOJS_VERSION-linux-x64.tar.gz\$" SHASUMS256.txt.asc | sha256sum -c - && \
     tar -xzf "iojs-v$IOJS_VERSION-linux-x64.tar.gz" -C /iojs --strip-components=1 && \
-    rm "iojs-v$IOJS_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc 
+    rm "iojs-v$IOJS_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc

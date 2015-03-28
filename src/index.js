@@ -50,7 +50,7 @@ module.exports = function(outputStream, errorStream){
           str = str.replace(/^[ \t]+/g, '')
             .replace(/^\n/, '')
             .replace(/([^ ])\n/g, '$1 \n')
-            .replace(/\n$/, '')
+            .replace(/[\s\n]+$/, '')
 
           if (exec) {
             var indentation = (commandName+' ').replace(/[^ ]/g, ' ')
@@ -166,12 +166,9 @@ module.exports = function(outputStream, errorStream){
 
   var firstInclude = true
   api.include = function(file){
-    lastCommand = null
-
     if (firstInclude) {
       firstInclude = false
-    } else {
-      output([])
+      lastCommand = null
     }
 
     if (file[0] !== '/') {
@@ -196,6 +193,7 @@ module.exports = function(outputStream, errorStream){
 
     SandboxedModule.require(file, {
       globals: api,
+      singleOnly: true,
       sourceTransformers: {
         babel: function(code){
           return babel.transform(code).code
