@@ -1,6 +1,8 @@
 # dockerscript
 Write your Dockerfile in javascript!
 
+[![Build Status](https://travis-ci.org/devTristan/dockerscript.svg?branch=master)](https://travis-ci.org/devTristan/dockerscript)
+
 ## Install
 
 ```console
