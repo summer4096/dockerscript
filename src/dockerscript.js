@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var program = require('./program')
 
 var args = process.argv.slice(2)
