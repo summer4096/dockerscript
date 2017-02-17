@@ -4,7 +4,6 @@ var concat = require('concat-stream')
 var fs = require('fs')
 var path = require('path')
 var SandboxedModule = require('sandboxed-module')
-var babel = require('babel')
 var log = require('./log')
 
 module.exports = function(outputStream, errorStream){
@@ -192,13 +191,7 @@ module.exports = function(outputStream, errorStream){
     workingDir = path.dirname(file)
 
     SandboxedModule.require(file, {
-      globals: api,
-      singleOnly: true,
-      sourceTransformers: {
-        babel: function(code){
-          return babel.transform(code).code
-        }
-      }
+      globals: api
     })
 
     workingDir = oldWorkingDir
