@@ -3,7 +3,6 @@ var shellEscape = require('shell-escape')
 var concat = require('concat-stream')
 var fs = require('fs')
 var path = require('path')
-var SandboxedModule = require('sandboxed-module')
 var log = require('./log')
 
 module.exports = function(outputStream, errorStream){
@@ -190,9 +189,9 @@ module.exports = function(outputStream, errorStream){
     var oldWorkingDir = workingDir
     workingDir = path.dirname(file)
 
-    SandboxedModule.require(file, {
-      globals: api
-    })
+    Object.assign(global, api);
+
+    require(file);
 
     workingDir = oldWorkingDir
   }

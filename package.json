@@ -1,6 +1,6 @@
 {
-  "name": "dockerscript",
-  "version": "1.0.6",
+  "name": "@tolmasky/dockerscript",
+  "version": "1.0.0",
   "description": "Write your Dockerfile in javascript!",
   "main": "dist/index.js",
   "preferGlobal": true,
@@ -18,7 +18,6 @@
     "babel": "^4.7.16",
     "concat-stream": "^1.4.7",
     "event-stream": "^3.3.0",
-    "sandboxed-module": "^2.0.0",
     "shell-escape": "^0.2.0"
   },
   "devDependencies": {

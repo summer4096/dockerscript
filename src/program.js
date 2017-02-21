@@ -67,7 +67,10 @@ module.exports = function(...args){
     input = path.join(process.cwd(), input)
   }
 
-  globals.include(input)
+  globals.include(input);
 
-  globals.__end()
+  process.on("exit", function ()
+  {
+    globals.__end();
+  });
 }
