@@ -15,7 +15,7 @@
   "author": "Summer Davies <npm@summer.dev>",
   "license": "MIT",
   "dependencies": {
-    "babel": "^4.7.16",
+    "babel": "^6.23.0",
     "concat-stream": "^1.4.7",
     "event-stream": "^3.3.0",
     "sandboxed-module": "^2.0.0",
@@ -23,9 +23,9 @@
   },
   "devDependencies": {
     "gulp": "^3.8.11",
-    "gulp-babel": "^4.0.0",
-    "gulp-sourcemaps": "^1.5.1",
-    "mocha": "^2.2.1",
-    "chai": "^2.2.0"
+    "gulp-babel": "^6.1.2",
+    "gulp-sourcemaps": "^2.4.1",
+    "mocha": "^3.2.0",
+    "chai": "^3.5.0"
   }
 }
