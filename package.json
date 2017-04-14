@@ -15,7 +15,6 @@
   "author": "Tristan Davies <npm@tristan.io>",
   "license": "MIT",
   "dependencies": {
-    "babel": "^4.7.16",
     "concat-stream": "^1.4.7",
     "event-stream": "^3.3.0",
     "shell-escape": "^0.2.0"
