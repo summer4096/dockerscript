@@ -1,6 +1,6 @@
 {
   "name": "@tolmasky/dockerscript",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Write your Dockerfile in javascript!",
   "main": "dist/index.js",
   "preferGlobal": true,
