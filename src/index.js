@@ -3,8 +3,6 @@ var shellEscape = require('shell-escape')
 var concat = require('concat-stream')
 var fs = require('fs')
 var path = require('path')
-var SandboxedModule = require('sandboxed-module')
-var babel = require('babel')
 var log = require('./log')
 
 module.exports = function(outputStream, errorStream){
@@ -150,6 +148,8 @@ module.exports = function(outputStream, errorStream){
     lastCommand = 'ONBUILD'
   }
 
+  api.docker = multiStringCommand.bind(null, 'DOCKER')
+
   api.comment = stringOrListCommand.bind(null, '#', false)
 
   var workingDir = process.cwd()
@@ -191,15 +191,9 @@ module.exports = function(outputStream, errorStream){
     var oldWorkingDir = workingDir
     workingDir = path.dirname(file)
 
-    SandboxedModule.require(file, {
-      globals: api,
-      singleOnly: true,
-      sourceTransformers: {
-        babel: function(code){
-          return babel.transform(code).code
-        }
-      }
-    })
+    Object.assign(global, api);
+
+    require(file);
 
     workingDir = oldWorkingDir
   }
