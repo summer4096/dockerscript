@@ -148,6 +148,8 @@ module.exports = function(outputStream, errorStream){
     lastCommand = 'ONBUILD'
   }
 
+  api.docker = multiStringCommand.bind(null, 'DOCKER')
+
   api.comment = stringOrListCommand.bind(null, '#', false)
 
   var workingDir = process.cwd()
