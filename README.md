@@ -1,7 +1,10 @@
-# dockerscript
-Write your Dockerfile in javascript!
+# Important note
 
-[![Build Status](https://travis-ci.org/summer4096/dockerscript.svg?branch=master)](https://travis-ci.org/summer4096/dockerscript)
+This was kind of a joke... you probably shouldn't actually do this.
+
+# dockerscript
+
+Write your Dockerfile in javascript!
 
 ## Install
 
